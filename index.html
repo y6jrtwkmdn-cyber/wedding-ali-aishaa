@@ -2,1203 +2,443 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ali & Aisha | Wedding Invitation</title>
 
-<title>Ali & Aisha | Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    background:#090806;
-    color:white;
-    font-family:'Amiri',serif;
-    overflow-x:hidden;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 50% 30%,#fff 0%,#faf7f1 45%,#eee8dc 100%);
+  overflow:hidden;
+  color:#8b7040;
+  font-family:"Noto Kufi Arabic",sans-serif;
 }
 
-
-/* =========================================
-   CINEMATIC OPENING
-========================================= */
-
-.cinematic{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:#080705;
-    overflow:hidden;
-
-    animation:openingOut 2s ease 9s forwards;
+/* شاشة البداية */
+.opening{
+  position:fixed;
+  inset:0;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(145deg,#fffdf9,#eee8dc);
+  transition:1.5s ease;
 }
 
-
-/* ضوء خلفي */
-
-.cinematic-light{
-    position:absolute;
-    width:800px;
-    height:800px;
-    left:50%;
-    top:45%;
-    transform:translate(-50%,-50%);
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(206,170,91,.25),
-            rgba(206,170,91,.08) 25%,
-            transparent 65%
-        );
-
-    animation:
-        lightBreath 5s ease-in-out infinite;
+.opening.hide{
+  opacity:0;
+  pointer-events:none;
 }
 
-
-/* ستارة */
-
-.curtain{
-    position:absolute;
-    top:0;
-    width:50%;
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #050403,
-            #19140e,
-            #070604
-        );
-
-    box-shadow:
-        0 0 70px rgba(0,0,0,.9);
+.envelope{
+  position:relative;
+  width:min(85vw,430px);
+  height:280px;
+  perspective:1000px;
+  filter:drop-shadow(0 25px 35px rgba(90,70,30,.18));
 }
 
-.curtain.left{
-    left:0;
-    transform-origin:left;
-    animation:leftCurtain 3s cubic-bezier(.7,0,.2,1) 5s forwards;
+/* الظرف */
+.env-body{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(145deg,#fff,#f3eee5);
+  border:1px solid #d4b66b;
+  border-radius:5px;
+  overflow:hidden;
 }
 
-.curtain.right{
-    right:0;
-    transform-origin:right;
-    animation:rightCurtain 3s cubic-bezier(.7,0,.2,1) 5s forwards;
+/* مثلثات الظرف */
+.env-body:before,
+.env-body:after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  width:0;
+  height:0;
+  border-style:solid;
+  z-index:3;
 }
 
-
-/* النجوم */
-
-.star{
-    position:absolute;
-    color:#d8b96c;
-    opacity:0;
-
-    animation:
-        starAppear 2s ease forwards,
-        starPulse 3s ease-in-out infinite;
+.env-body:before{
+  left:0;
+  border-width:140px 215px 0 0;
+  border-color:#eee7da transparent transparent transparent;
 }
 
-.star:nth-child(1){top:18%;left:15%;animation-delay:2s}
-.star:nth-child(2){top:25%;right:17%;animation-delay:2.5s}
-.star:nth-child(3){top:55%;left:10%;animation-delay:3s}
-.star:nth-child(4){top:65%;right:12%;animation-delay:3.5s}
-.star:nth-child(5){top:12%;right:45%;animation-delay:4s}
-.star:nth-child(6){bottom:15%;left:45%;animation-delay:4.5s}
-
-
-/* النص */
-
-.cinematic-content{
-    position:absolute;
-    inset:0;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-
-    text-align:center;
-
-    z-index:5;
+.env-body:after{
+  right:0;
+  border-width:140px 0 0 215px;
+  border-color:#e7dfd0 transparent transparent transparent;
 }
 
-.cinematic-small{
-    color:#c7a65d;
-    letter-spacing:8px;
-    font-family:'Cormorant Garamond',serif;
-    font-size:15px;
-
-    opacity:0;
-    animation:fadeUp 1.5s ease 1s forwards;
+/* الغطاء */
+.flap{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:155px;
+  background:linear-gradient(160deg,#fffdf9,#e9e0d0);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top center;
+  z-index:8;
+  transition:1.5s cubic-bezier(.65,.05,.36,1);
+  border-top:1px solid #d4b66b;
 }
 
-.cinematic-title{
-    font-family:'Cormorant Garamond',serif;
-    font-size:clamp(55px,12vw,120px);
-    font-weight:400;
-
-    color:#e0c47d;
-
-    margin:18px 0;
-
-    opacity:0;
-
-    animation:
-        titleReveal 2s ease 2s forwards,
-        goldGlow 4s ease-in-out 5s infinite;
+.envelope.open .flap{
+  transform:rotateX(180deg);
 }
 
-.cinematic-amp{
-    font-size:.45em;
-    margin:0 15px;
+/* الختم */
+.seal{
+  position:absolute;
+  z-index:12;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#e5c777,#a98435);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:"Cormorant Garamond",serif;
+  font-size:26px;
+  letter-spacing:2px;
+  box-shadow:0 5px 15px rgba(110,80,20,.3);
+  transition:1s ease;
 }
 
-.cinematic-date{
-    font-size:17px;
-    letter-spacing:5px;
-    color:#d2c3a5;
-
-    opacity:0;
-
-    animation:fadeUp 1.5s ease 3.8s forwards;
+.envelope.open .seal{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.4);
 }
 
-.cinematic-line{
-    width:0;
-    height:1px;
-    background:#c9a65d;
-    margin:25px auto;
-
-    animation:
-        lineOpen 2s ease 4.2s forwards;
+/* البطاقة */
+.card{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:min(86vw,390px);
+  min-height:500px;
+  transform:translate(-50%,100%);
+  background:rgba(255,253,249,.97);
+  border:1px solid #d7bd7b;
+  box-shadow:0 25px 70px rgba(83,63,28,.18);
+  border-radius:4px;
+  padding:48px 28px;
+  text-align:center;
+  opacity:0;
+  transition:1.7s cubic-bezier(.2,.8,.2,1);
+  z-index:5;
 }
 
-
-/* =========================================
-   MAIN HERO
-========================================= */
-
-.hero{
-    min-height:100vh;
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    overflow:hidden;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(180,140,70,.15),
-            transparent 45%
-        ),
-        #0b0907;
+.card.show{
+  transform:translate(-50%,-50%);
+  opacity:1;
 }
 
-
-/* خلفية متحركة */
-
-.hero::before{
-    content:"";
-
-    position:absolute;
-    inset:-10%;
-
-    background:
-        radial-gradient(
-            circle at 30% 40%,
-            rgba(200,160,80,.15),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 70% 60%,
-            rgba(200,160,80,.12),
-            transparent 25%
-        );
-
-    animation:
-        backgroundMove 12s ease-in-out infinite alternate;
+.ornament{
+  font-size:28px;
+  color:#bd9747;
+  margin-bottom:15px;
 }
 
-
-/* محتوى */
-
-.hero-content{
-    position:relative;
-    z-index:2;
-
-    text-align:center;
-
-    padding:30px;
+.small{
+  font-size:11px;
+  letter-spacing:4px;
+  color:#a58b5a;
 }
 
-
-/* إطار */
-
-.gold-frame{
-    position:absolute;
-    inset:20px;
-
-    border:1px solid rgba(205,168,90,.35);
-
-    pointer-events:none;
+.names{
+  font-family:"Cormorant Garamond",serif;
+  font-size:58px;
+  line-height:1;
+  margin:18px 0;
+  color:#8c6d35;
+  direction:ltr;
 }
 
-.gold-frame::before,
-.gold-frame::after{
-    content:"✦";
-
-    position:absolute;
-
-    color:#d2b36b;
-    font-size:25px;
+.and{
+  font-size:24px;
+  color:#c7a85f;
+  margin:8px;
 }
 
-.gold-frame::before{
-    top:10px;
-    right:15px;
+.line{
+  width:80px;
+  height:1px;
+  background:#c8aa67;
+  margin:20px auto;
 }
 
-.gold-frame::after{
-    bottom:10px;
-    left:15px;
+.text{
+  font-size:13px;
+  line-height:2.2;
+  color:#79694d;
 }
 
-
-/* =========================================
-   العروس والعريس
-========================================= */
-
-.couple{
-    width:min(650px,90vw);
-
-    margin:auto;
-
-    filter:
-        drop-shadow(0 20px 40px rgba(0,0,0,.7));
-
-    animation:
-        coupleFloat 6s ease-in-out infinite;
+.date{
+  font-family:"Cormorant Garamond",serif;
+  font-size:27px;
+  direction:ltr;
+  margin:15px 0 5px;
+  color:#896c39;
 }
 
-.couple img{
-    width:100%;
-    display:block;
-}
-
-
-/* إذا ما عندك الصورة يظهر مكانها هذا النص */
-
-.no-image{
-    width:100%;
-    height:380px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(200,165,90,.25);
-
-    color:#c9aa68;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(190,150,70,.15),
-            transparent 60%
-        );
-}
-
-.no-image .ring{
-    font-size:65px;
-    margin-bottom:15px;
-}
-
-.no-image h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:45px;
-    font-weight:400;
-}
-
-
-/* =========================================
-   التفاصيل
-========================================= */
-
-.details-section{
-    position:relative;
-
-    background:
-        linear-gradient(
-            180deg,
-            #0b0907,
-            #15110b,
-            #0b0907
-        );
-
-    padding:90px 20px;
-
-    text-align:center;
-}
-
-.section-label{
-    color:#c5a15b;
-
-    font-family:'Cormorant Garamond',serif;
-
-    letter-spacing:6px;
-
-    font-size:14px;
-}
-
-.section-title{
-    font-family:'Cormorant Garamond',serif;
-
-    color:#e0c47d;
-
-    font-size:55px;
-
-    margin:15px 0 40px;
-}
-
-
-/* بطاقات */
-
-.info-grid{
-    max-width:900px;
-
-    margin:auto;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:18px;
-}
-
-.info-card{
-    padding:30px 15px;
-
-    border:1px solid rgba(205,168,90,.25);
-
-    background:
-        rgba(255,255,255,.025);
-
-    backdrop-filter:blur(10px);
-
-    transition:
-        transform .5s,
-        background .5s;
-
-    animation:cardFloat 5s ease-in-out infinite;
-}
-
-.info-card:nth-child(2){
-    animation-delay:1s;
-}
-
-.info-card:nth-child(3){
-    animation-delay:2s;
-}
-
-.info-icon{
-    font-size:30px;
-    color:#d0ad63;
-    margin-bottom:15px;
-}
-
-.info-card h3{
-    color:#d9ba75;
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:28px;
-
-    margin-bottom:8px;
-}
-
-.info-card p{
-    color:#eee6d8;
-
-    font-size:18px;
-
-    line-height:1.8;
-}
-
-
-/* =========================================
-   COUNTDOWN
-========================================= */
-
-.countdown-section{
-    padding:80px 20px;
-
-    text-align:center;
-
-    background:#080705;
+.location{
+  margin-top:15px;
+  font-size:13px;
 }
 
 .countdown{
-    max-width:700px;
-
-    margin:35px auto 0;
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:12px;
-
-    direction:ltr;
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  margin-top:22px;
+  direction:ltr;
 }
 
-.time{
-    width:105px;
-
-    padding:20px 5px;
-
-    border:
-        1px solid
-        rgba(205,168,90,.35);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.04),
-            rgba(255,255,255,.01)
-        );
+.box{
+  min-width:55px;
+  padding:8px 5px;
+  border:1px solid #d8bf83;
+  background:#fffdf8;
 }
 
-.time b{
-    display:block;
-
-    color:#d8b86e;
-
-    font-family:'Cormorant Garamond',serif;
-
-    font-size:42px;
-
-    font-weight:400;
+.box b{
+  display:block;
+  font-family:"Cormorant Garamond",serif;
+  font-size:22px;
+  font-weight:500;
 }
 
-.time span{
-    color:#b9ae99;
-
-    font-size:12px;
-
-    letter-spacing:2px;
+.box span{
+  font-size:8px;
+  color:#a18b63;
 }
 
-
-/* =========================================
-   تنويه
-========================================= */
-
-.notice{
-    max-width:700px;
-
-    margin:60px auto 0;
-
-    padding:25px;
-
-    border:
-        1px solid
-        rgba(205,168,90,.35);
-
-    background:
-        rgba(255,255,255,.025);
+/* زر الصوت */
+.sound{
+  position:fixed;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:30;
+  border:1px solid #c9aa63;
+  background:rgba(255,255,255,.9);
+  color:#8d703c;
+  padding:9px 20px;
+  border-radius:30px;
+  font-family:inherit;
+  cursor:pointer;
 }
 
-.notice-title{
-    color:#d8b86e;
-
-    font-size:22px;
-
-    margin-bottom:10px;
+/* ورود */
+.flower{
+  position:fixed;
+  color:#d2bb82;
+  opacity:.3;
+  font-size:45px;
+  animation:float 8s infinite ease-in-out;
 }
 
-.notice-text{
-    color:#eee5d5;
+.f1{top:7%;left:5%}
+.f2{bottom:8%;right:5%;animation-delay:2s}
+.f3{top:20%;right:8%;font-size:30px;animation-delay:4s}
 
-    font-size:19px;
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-18px) rotate(8deg)}
 }
 
-
-/* =========================================
-   MUSIC
-========================================= */
-
-.music-button{
-    width:70px;
-    height:70px;
-
-    margin:40px auto;
-
-    border-radius:50%;
-
-    border:1px solid #c7a45e;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    color:#d3b16b;
-
-    font-size:25px;
-
-    cursor:pointer;
-
-    animation:
-        musicPulse 2s infinite;
+.tap{
+  position:absolute;
+  bottom:25px;
+  width:100%;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:2px;
+  color:#9d8350;
+  z-index:15;
 }
-
-
-/* =========================================
-   النهاية
-========================================= */
-
-.final{
-    min-height:60vh;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(190,150,70,.12),
-            transparent 50%
-        ),
-        #090806;
-}
-
-.final-small{
-    color:#bda268;
-
-    letter-spacing:5px;
-
-    font-family:'Cormorant Garamond',serif;
-}
-
-.final-names{
-    font-family:'Cormorant Garamond',serif;
-
-    color:#dfc17b;
-
-    font-size:clamp(55px,10vw,100px);
-
-    margin:20px 0;
-}
-
-.final-text{
-    color:#d9d0c0;
-
-    font-size:20px;
-}
-
-
-/* =========================================
-   ANIMATIONS
-========================================= */
-
-@keyframes openingOut{
-    to{
-        opacity:0;
-        visibility:hidden;
-    }
-}
-
-@keyframes leftCurtain{
-    to{
-        transform:scaleX(.05);
-    }
-}
-
-@keyframes rightCurtain{
-    to{
-        transform:scaleX(.05);
-    }
-}
-
-@keyframes lightBreath{
-    50%{
-        transform:
-            translate(-50%,-50%)
-            scale(1.15);
-    }
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes titleReveal{
-    from{
-        opacity:0;
-        transform:scale(.65);
-        filter:blur(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:scale(1);
-        filter:blur(0);
-    }
-}
-
-@keyframes goldGlow{
-    50%{
-        text-shadow:
-            0 0 35px rgba(220,180,90,.4);
-    }
-}
-
-@keyframes lineOpen{
-    to{
-        width:180px;
-    }
-}
-
-@keyframes starAppear{
-    to{
-        opacity:.8;
-    }
-}
-
-@keyframes starPulse{
-    50%{
-        transform:
-            scale(1.5)
-            rotate(45deg);
-        opacity:1;
-    }
-}
-
-@keyframes backgroundMove{
-    to{
-        transform:
-            translate(3%,-2%)
-            scale(1.08);
-    }
-}
-
-@keyframes coupleFloat{
-    50%{
-        transform:
-            translateY(-10px);
-    }
-}
-
-@keyframes cardFloat{
-    50%{
-        transform:
-            translateY(-7px);
-    }
-}
-
-@keyframes musicPulse{
-    50%{
-        box-shadow:
-            0 0 0 15px
-            rgba(205,168,90,0);
-    }
-}
-
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:650px){
-
-    .info-grid{
-        grid-template-columns:1fr;
-    }
-
-    .info-card{
-        animation:none;
-    }
-
-    .countdown{
-        gap:5px;
-    }
-
-    .time{
-        width:75px;
-        padding:15px 3px;
-    }
-
-    .time b{
-        font-size:30px;
-    }
-
-    .section-title{
-        font-size:43px;
-    }
-
-    .cinematic-title{
-        font-size:60px;
-    }
-}
-
 </style>
 </head>
 
-
 <body>
 
+<div class="flower f1">✿</div>
+<div class="flower f2">❀</div>
+<div class="flower f3">✧</div>
 
-<!-- =========================================
-     الافتتاحية السينمائية
-========================================= -->
+<!-- الظرف -->
+<div class="opening" id="opening">
 
-<div class="cinematic">
+  <div class="envelope" id="envelope">
 
-    <div class="cinematic-light"></div>
+    <div class="env-body"></div>
 
-    <div class="curtain left"></div>
-    <div class="curtain right"></div>
+    <div class="flap"></div>
 
+    <div class="seal">A&nbsp;&amp;&nbsp;A</div>
 
-    <div class="star">✦</div>
-    <div class="star">✧</div>
-    <div class="star">✦</div>
-    <div class="star">✧</div>
-    <div class="star">✦</div>
-    <div class="star">✧</div>
-
-
-    <div class="cinematic-content">
-
-        <div class="cinematic-small">
-            THE WEDDING OF
-        </div>
-
-        <div class="cinematic-title">
-
-            Ali
-            <span class="cinematic-amp">&</span>
-            Aisha
-
-        </div>
-
-        <div class="cinematic-line"></div>
-
-        <div class="cinematic-date">
-            02 • 12 • 2026
-        </div>
-
+    <div class="tap">
+      اضغط لفتح الدعوة
     </div>
+
+  </div>
 
 </div>
 
+<!-- البطاقة -->
+<div class="card" id="card">
 
-<!-- =========================================
-     HERO
-========================================= -->
+  <div class="ornament">❦</div>
 
-<section class="hero">
+  <div class="small">
+    WEDDING INVITATION
+  </div>
 
-    <div class="gold-frame"></div>
+  <div class="names">
+    Ali
+    <div class="and">&amp;</div>
+    Aisha
+  </div>
 
-    <div class="hero-content">
+  <div class="line"></div>
 
-        <!--
-        إذا عندك صورة العريس والعروس:
-        سمّيها couple.png
-        وضعها بجانب index.html
+  <div class="text">
+    بكل حب وفرح، نتشرف بدعوتكم<br>
+    لمشاركتنا أجمل لحظات العمر
+  </div>
 
-        ثم احذف no-image
-        وألغِ التعليق عن img
-        -->
+  <div class="date">
+    02 · 12 · 2026
+  </div>
 
-        <div class="couple">
+  <div class="text">
+    Wednesday · 5:00 PM
+  </div>
 
-            <img
-                src="couple.png"
-                alt="Ali & Aisha"
-            >
+  <div class="location">
+    قاعة كلكامش<br>
+    فندق بابل
+  </div>
 
-        </div>
+  <div class="line"></div>
 
+  <div class="small">
+    جَنّةُ الأطفالِ منازلُهم
+  </div>
+
+  <div class="countdown">
+    <div class="box">
+      <b id="days">00</b>
+      <span>DAYS</span>
     </div>
 
-</section>
-
-
-<!-- =========================================
-     تفاصيل الحفل
-========================================= -->
-
-<section class="details-section">
-
-    <div class="section-label">
-        OUR SPECIAL DAY
+    <div class="box">
+      <b id="hours">00</b>
+      <span>HOURS</span>
     </div>
 
-    <h1 class="section-title">
-        تفاصيل الحفل
-    </h1>
-
-
-    <div class="info-grid">
-
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                ♡
-            </div>
-
-            <h3>
-                العرسان
-            </h3>
-
-            <p>
-                Ali & Aisha
-            </p>
-
-        </div>
-
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                ◷
-            </div>
-
-            <h3>
-                الموعد
-            </h3>
-
-            <p>
-                الأربعاء<br>
-                02 ديسمبر 2026<br>
-                الساعة 5:00 مساءً
-            </p>
-
-        </div>
-
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                ♢
-            </div>
-
-            <h3>
-                المكان
-            </h3>
-
-            <p>
-                قاعة كلكامش<br>
-                فندق بابل
-            </p>
-
-        </div>
-
+    <div class="box">
+      <b id="minutes">00</b>
+      <span>MINUTES</span>
     </div>
 
-</section>
-
-
-<!-- =========================================
-     العد التنازلي
-========================================= -->
-
-<section class="countdown-section">
-
-    <div class="section-label">
-        COUNTDOWN TO OUR DAY
+    <div class="box">
+      <b id="seconds">00</b>
+      <span>SECONDS</span>
     </div>
+  </div>
 
-    <h1 class="section-title">
-        الموعد يقترب
-    </h1>
+</div>
 
-
-    <div class="countdown">
-
-        <div class="time">
-
-            <b id="days">
-                00
-            </b>
-
-            <span>
-                DAYS
-            </span>
-
-        </div>
-
-
-        <div class="time">
-
-            <b id="hours">
-                00
-            </b>
-
-            <span>
-                HOURS
-            </span>
-
-        </div>
-
-
-        <div class="time">
-
-            <b id="minutes">
-                00
-            </b>
-
-            <span>
-                MINUTES
-            </span>
-
-        </div>
-
-
-        <div class="time">
-
-            <b id="seconds">
-                00
-            </b>
-
-            <span>
-                SECONDS
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <!-- تنويه الأطفال -->
-
-    <div class="notice">
-
-        <div class="notice-title">
-            تنويه خاص
-        </div>
-
-        <div class="notice-text">
-            إدارة الفندق تمنع اصطحاب الأطفال
-        </div>
-
-    </div>
-
-
-    <!-- الموسيقى -->
-
-    <div
-        class="music-button"
-        id="musicButton"
-        onclick="toggleMusic()">
-
-        ♪
-
-    </div>
-
-</section>
-
-
-<!-- =========================================
-     النهاية
-========================================= -->
-
-<section class="final">
-
-    <div class="final-small">
-        WITH LOVE
-    </div>
-
-    <div class="final-names">
-        Ali & Aisha
-    </div>
-
-    <div class="final-text">
-        ننتظركم لمشاركتنا أجمل لحظاتنا
-    </div>
-
-</section>
-
-
-<!-- الموسيقى -->
-
-<audio
-    id="music"
-    loop>
-
-    <source
-        src="song.mp3"
-        type="audio/mpeg">
-
+<audio id="music" loop>
+  <source src="swan-dance.mp3" type="audio/mpeg">
 </audio>
 
+<button class="sound" id="sound">♫ تشغيل الموسيقى</button>
 
 <script>
 
+const envelope = document.getElementById("envelope");
+const opening = document.getElementById("opening");
+const card = document.getElementById("card");
+const music = document.getElementById("music");
 
-/* =========================================
-   COUNTDOWN
-========================================= */
+let opened = false;
 
-const weddingDate =
-new Date(
-    "December 2, 2026 17:00:00"
-).getTime();
+opening.addEventListener("click", () => {
 
+  if(opened) return;
+  opened = true;
 
-function updateCountdown(){
+  envelope.classList.add("open");
 
-    const now =
-    new Date().getTime();
+  setTimeout(() => {
+    card.classList.add("show");
+  },900);
 
-    const distance =
-    weddingDate - now;
+  setTimeout(() => {
+    opening.classList.add("hide");
+  },2300);
 
+  music.play().catch(()=>{});
 
-    if(distance <= 0){
+});
 
-        document.getElementById("days")
-            .innerText="00";
+document.getElementById("sound").addEventListener("click", () => {
 
-        document.getElementById("hours")
-            .innerText="00";
+  if(music.paused){
+    music.play();
+    document.getElementById("sound").innerText="♫ إيقاف الموسيقى";
+  }else{
+    music.pause();
+    document.getElementById("sound").innerText="♫ تشغيل الموسيقى";
+  }
 
-        document.getElementById("minutes")
-            .innerText="00";
+});
 
-        document.getElementById("seconds")
-            .innerText="00";
+function countdown(){
 
-        return;
-    }
+  const wedding = new Date("December 2, 2026 17:00:00").getTime();
+  const now = new Date().getTime();
 
+  let distance = wedding - now;
 
-    const days =
-    Math.floor(
-        distance /
-        (1000*60*60*24)
-    );
+  if(distance < 0) distance = 0;
 
+  const days = Math.floor(distance/(1000*60*60*24));
+  const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+  const seconds = Math.floor((distance%(1000*60))/1000);
 
-    const hours =
-    Math.floor(
-        (distance %
-        (1000*60*60*24)) /
-        (1000*60*60)
-    );
-
-
-    const minutes =
-    Math.floor(
-        (distance %
-        (1000*60*60)) /
-        (1000*60)
-    );
-
-
-    const seconds =
-    Math.floor(
-        (distance %
-        (1000*60)) /
-        1000
-    );
-
-
-    document.getElementById("days")
-        .innerText =
-        String(days).padStart(2,"0");
-
-
-    document.getElementById("hours")
-        .innerText =
-        String(hours).padStart(2,"0");
-
-
-    document.getElementById("minutes")
-        .innerText =
-        String(minutes).padStart(2,"0");
-
-
-    document.getElementById("seconds")
-        .innerText =
-        String(seconds).padStart(2,"0");
-
+  document.getElementById("days").innerText=String(days).padStart(2,"0");
+  document.getElementById("hours").innerText=String(hours).padStart(2,"0");
+  document.getElementById("minutes").innerText=String(minutes).padStart(2,"0");
+  document.getElementById("seconds").innerText=String(seconds).padStart(2,"0");
 }
 
-
-updateCountdown();
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-/* =========================================
-   MUSIC
-========================================= */
-
-function toggleMusic(){
-
-    const music =
-    document.getElementById("music");
-
-    const button =
-    document.getElementById("musicButton");
-
-
-    if(music.paused){
-
-        music.play();
-
-        button.innerHTML="❚❚";
-
-    }else{
-
-        music.pause();
-
-        button.innerHTML="♪";
-
-    }
-
-}
+countdown();
+setInterval(countdown,1000);
 
 </script>
 
