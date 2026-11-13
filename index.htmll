@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>دعوة زفاف علي وعائشة</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Cairo,sans-serif;
+  background:#fffdf8;
+  color:#3b3325;
+  overflow-x:hidden;
+}
+
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:linear-gradient(135deg,#fffdf8,#f7efd9);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  transition:1s;
+}
+
+.intro.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+.intro-box{
+  width:90%;
+  max-width:600px;
+}
+
+.bismillah{
+  color:#967536;
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.intro-names{
+  font-family:"Playfair Display",serif;
+  color:#a4813d;
+  font-size:70px;
+  line-height:1.2;
+}
+
+.intro-sub{
+  color:#777;
+  margin:25px 0 35px;
+}
+
+.open-btn{
+  border:0;
+  border-radius:50px;
+  padding:15px 40px;
+  background:linear-gradient(135deg,#a9823c,#e4c982,#a9823c);
+  color:white;
+  font-family:inherit;
+  font-size:16px;
+  box-shadow:0 10px 35px rgba(150,115,50,.3);
+}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:50px 20px;
+  position:relative;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border:1px solid rgba(180,145,70,.25);
+  border-radius:30px;
+  pointer-events:none;
+}
+
+.small{
+  color:#92733a;
+  letter-spacing:4px;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.names{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(60px,15vw,120px);
+  color:#a5813d;
+  line-height:1;
+}
+
+.and{
+  font-family:"Playfair Display",serif;
+  color:#777;
+  font-size:30px;
+  margin:15px 0;
+}
+
+.line{
+  width:100px;
+  height:1px;
+  background:#b9944c;
+  margin:30px auto;
+}
+
+.date{
+  font-size:23px;
+  font-weight:600;
+}
+
+.venue{
+  margin-top:12px;
+  color:#777;
+}
+
+.buttons{
+  margin-top:30px;
+}
+
+.btn{
+  display:inline-block;
+  margin:5px;
+  padding:12px 25px;
+  border:1px solid #b9944c;
+  border-radius:40px;
+  color:#8b6d35;
+  background:white;
+  text-decoration:none;
+}
+
+section{
+  padding:80px 20px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+}
+
+.title{
+  text-align:center;
+  color:#a17d3b;
+  font-family:"Playfair Display",serif;
+  font-size:34px;
+  margin-bottom:35px;
+}
+
+.card{
+  background:white;
+  border:1px solid rgba(180,145,70,.3);
+  border-radius:30px;
+  padding:45px 25px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(80,60,20,.08);
+}
+
+.verse{
+  font-family:serif;
+  font-size:24px;
+  line-height:2.3;
+  color:#4e432d;
+}
+
+.reference{
+  margin-top:20px;
+  color:#a17d3b;
+}
+
+.details{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.detail{
+  background:white;
+  border:1px solid rgba(180,145,70,.25);
+  border-radius:25px;
+  padding:30px 15px;
+  text-align:center;
+}
+
+.icon{
+  font-size:30px;
+  margin-bottom:10px;
+}
+
+.detail strong{
+  display:block;
+  color:#9b7839;
+  margin-bottom:8px;
+}
+
+.detail span{
+  color:#666;
+  font-size:14px;
+}
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.time{
+  background:white;
+  border:1px solid rgba(180,145,70,.25);
+  border-radius:25px;
+  padding:25px 10px;
+  text-align:center;
+}
+
+.number{
+  font-family:"Playfair Display",serif;
+  color:#a17d3b;
+  font-size:42px;
+  display:block;
+}
+
+.label{
+  color:#777;
+  font-size:12px;
+}
+
+.message{
+  text-align:center;
+  line-height:2;
+  color:#666;
+}
+
+footer{
+  text-align:center;
+  padding:50px 20px;
+  color:#94783f;
+}
+
+@media(max-width:650px){
+  .details{
+    grid-template-columns:1fr;
+  }
+
+  .countdown{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .verse{
+    font-size:19px;
+  }
+
+  .intro-names{
+    font-size:55px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="intro">
+  <div class="intro-box">
+
+    <div class="bismillah">
+      بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+    </div>
+
+    <div class="intro-names">
+      علي<br>
+      <span style="font-size:.45em;color:#777">و</span><br>
+      عائشة
+    </div>
+
+    <div class="intro-sub">
+      بكل الحب والفرح ندعوكم لمشاركتنا أجمل أيام العمر
+    </div>
+
+    <button class="open-btn" onclick="openInvitation()">
+      فتح الدعوة ✦
+    </button>
+
+  </div>
+</div>
+
+<section class="hero">
+
+  <div>
+
+    <div class="small">
+      دَعْوَة زِفَاف
+    </div>
+
+    <div class="names">علي</div>
+
+    <div class="and">و</div>
+
+    <div class="names">عائشة</div>
+
+    <div class="line"></div>
+
+    <div class="date">
+      2 ديسمبر 2026
+    </div>
+
+    <div class="venue">
+      الساعة 5:00 مساءً<br>
+      قاعة كلكامش – فندق بابل
+    </div>
+
+    <div class="buttons">
+
+      <a class="btn"
+      target="_blank"
+      href="https://www.google.com/maps/search/?api=1&query=Babylon+Hotel+Baghdad">
+        📍 موقع القاعة
+      </a>
+
+      <a class="btn"
+      target="_blank"
+      href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=زفاف+علي+وعائشة&dates=20261202T140000Z/20261202T180000Z&location=قاعة+كلكامش+-+فندق+بابل">
+        📅 أضف الموعد
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <h2 class="title">
+      آية من كتاب الله
+    </h2>
+
+    <div class="card">
+
+      <div class="verse">
+        ﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ
+        أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+        وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ﴾
+      </div>
+
+      <div class="reference">
+        سورة الروم — الآية 21
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <h2 class="title">
+      تفاصيل المناسبة
+    </h2>
+
+    <div class="details">
+
+      <div class="detail">
+        <div class="icon">📅</div>
+        <strong>التاريخ</strong>
+        <span>الأربعاء<br>2 ديسمبر 2026</span>
+      </div>
+
+      <div class="detail">
+        <div class="icon">🕔</div>
+        <strong>الوقت</strong>
+        <span>5:00 مساءً</span>
+      </div>
+
+      <div class="detail">
+        <div class="icon">📍</div>
+        <strong>المكان</strong>
+        <span>قاعة كلكامش<br>فندق بابل</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <h2 class="title">
+      العد التنازلي
+    </h2>
+
+    <div class="countdown">
+
+      <div class="time">
+        <span class="number" id="days">00</span>
+        <span class="label">يوم</span>
+      </div>
+
+      <div class="time">
+        <span class="number" id="hours">00</span>
+        <span class="label">ساعة</span>
+      </div>
+
+      <div class="time">
+        <span class="number" id="minutes">00</span>
+        <span class="label">دقيقة</span>
+      </div>
+
+      <div class="time">
+        <span class="number" id="seconds">00</span>
+        <span class="label">ثانية</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section>
+
+  <div class="container">
+
+    <div class="card">
+
+      <h2 class="title">
+        بكل الحب 🤍
+      </h2>
+
+      <p class="message">
+        يسعدنا أن نشارككم فرحتنا في يومنا المميز،
+        وأن تكونوا معنا لتكتمل فرحتنا بحضوركم الجميل.
+        <br><br>
+        حضوركم هو أجمل هدية لنا.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<footer>
+  علي & عائشة ♡<br>
+  2 • 12 • 2026
+</footer>
+
+<script>
+
+function openInvitation(){
+  document.getElementById("intro").classList.add("hide");
+}
+
+const weddingDate =
+new Date("2026-12-02T17:00:00+03:00").getTime();
+
+function countdown(){
+
+  const now = new Date().getTime();
+
+  const distance = weddingDate - now;
+
+  if(distance <= 0){
+    return;
+  }
+
+  const days =
+  Math.floor(distance/(1000*60*60*24));
+
+  const hours =
+  Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+
+  const minutes =
+  Math.floor((distance%(1000*60*60))/(1000*60));
+
+  const seconds =
+  Math.floor((distance%(1000*60))/1000);
+
+  document.getElementById("days").textContent =
+  String(days).padStart(2,"0");
+
+  document.getElementById("hours").textContent =
+  String(hours).padStart(2,"0");
+
+  document.getElementById("minutes").textContent =
+  String(minutes).padStart(2,"0");
+
+  document.getElementById("seconds").textContent =
+  String(seconds).padStart(2,"0");
+}
+
+countdown();
+
+setInterval(countdown,1000);
+
+</script>
+
+</body>
+</html>
