@@ -2,293 +2,437 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>علي & عائشة | دعوة زفاف</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>زفاف علي وعائشة</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
-background:#fbf8f1;
+background:
+radial-gradient(circle at top,#fffdf8,#f4ecdd 65%,#eee2cd);
 color:#3b3022;
 font-family:Cairo,sans-serif;
-overflow-x:hidden
+overflow-x:hidden;
 }
-#intro{
+
+/* شاشة البداية */
+
+.intro{
 position:fixed;
 inset:0;
-z-index:50;
-background:radial-gradient(circle at 50% 35%,#fffdf8,#eee4d0 75%);
+z-index:100;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-transition:1s
+background:
+radial-gradient(circle at center,#fffdf9,#eee2cf);
+transition:1.2s;
 }
-#intro.hide{
+
+.intro.hide{
 opacity:0;
-visibility:hidden
+visibility:hidden;
 }
-.introbox{
-padding:28px
+
+.intro-content{
+width:min(90%,600px);
+padding:35px 25px;
 }
-.kicker{
-font-size:13px;
-letter-spacing:3px;
-color:#a17b3b
+
+.bismillah{
+font-family:serif;
+font-size:21px;
+color:#8d6b35;
+margin-bottom:30px;
 }
-.introbox h1,.names{
+
+.intro-small{
+letter-spacing:4px;
+font-size:12px;
+color:#a17d42;
+}
+
+.intro h1{
 font-family:"Playfair Display",serif;
-color:#a27b37;
-font-weight:500
+font-size:65px;
+font-weight:500;
+color:#a47d38;
+margin:18px 0;
 }
-.introbox h1{
-font-size:58px;
-margin:18px 0 10px
-}
-.introbox p{
+
+.intro-text{
 font-size:17px;
-color:#776650
+line-height:2;
+color:#756650;
+margin-bottom:28px;
 }
-.goldbtn{
-border:0;
-border-radius:999px;
-padding:14px 30px;
-background:linear-gradient(135deg,#c7a15c,#8c692f);
-color:white;
-font-family:inherit;
+
+/* الزر */
+
+.gold-button{
+border:1px solid #d2b170;
+border-radius:50px;
+padding:14px 34px;
+background:
+linear-gradient(135deg,#d1ae6a,#8e6b31);
+color:#fff;
+font-family:Cairo,sans-serif;
 font-size:16px;
-box-shadow:0 12px 35px #8c692f33;
-cursor:pointer
+cursor:pointer;
+box-shadow:
+0 10px 30px #80602d30,
+inset 0 1px 0 #ffffff55;
+text-decoration:none;
+display:inline-block;
 }
-.music{
-position:fixed;
-left:16px;
-bottom:16px;
-z-index:30;
-width:48px;
-height:48px;
-border-radius:50%;
-border:1px solid #b8944e;
-background:#fffaf0;
-color:#9b7438;
-font-size:20px;
-box-shadow:0 8px 25px #6d522622;
-cursor:pointer
-}
+
+/* الخلفية */
+
 main{
-max-width:920px;
+max-width:950px;
 margin:auto;
-padding:0 18px 55px
+padding:0 18px 60px;
 }
+
 .hero{
 min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-position:relative
+position:relative;
 }
-.hero:before{
-content:"";
+
+.hero-ring{
 position:absolute;
-width:75vw;
-height:75vw;
-max-width:650px;
-max-height:650px;
-border:1px solid #c9aa6a55;
+width:min(85vw,700px);
+height:min(85vw,700px);
+border:1px solid #b8924d55;
 border-radius:50%;
 box-shadow:
-0 0 0 22px #c9aa6a08,
-0 0 0 44px #c9aa6a05
+0 0 0 20px #b8924d09,
+0 0 0 42px #b8924d05;
 }
-.hero>*{
+
+.hero-content{
 position:relative;
-z-index:2
+z-index:2;
 }
+
+.hero-small{
+font-size:13px;
+letter-spacing:3px;
+color:#9d783d;
+}
+
 .names{
-font-size:76px;
-line-height:1.1;
-margin:22px 0
+font-family:"Playfair Display",serif;
+font-size:82px;
+font-weight:500;
+color:#a27a35;
+margin:25px 0 15px;
+text-shadow:0 3px 18px #9b743522;
 }
+
 .amp{
-font-family:Cairo;
-font-size:25px;
-color:#8c7657
+font-family:Cairo,sans-serif;
+font-size:27px;
+color:#887052;
+margin:0 8px;
 }
+
 .date{
 font-size:20px;
-font-weight:600
+font-weight:600;
 }
-.venue{
-color:#7d6d57;
-margin-top:8px
+
+.place{
+margin-top:8px;
+color:#766750;
 }
-.buttons{
+
+/* أزرار */
+
+.actions{
 display:flex;
 justify-content:center;
-gap:10px;
+gap:12px;
 flex-wrap:wrap;
-margin-top:24px
+margin-top:28px;
 }
-a.btn{
-display:inline-block;
-text-decoration:none
-}
+
+/* الأقسام */
+
 .section{
-background:#fffdf9;
-border:1px solid #e8dcc6;
-border-radius:30px;
-padding:34px 22px;
-margin:22px 0;
+background:#fffdf9e8;
+border:1px solid #e6d6b9;
+border-radius:32px;
+padding:38px 25px;
+margin:24px 0;
 text-align:center;
-box-shadow:0 18px 55px #60461b0c
+box-shadow:
+0 20px 60px #5c421b0d,
+inset 0 1px 0 #ffffff;
+backdrop-filter:blur(5px);
 }
-.section h2{
+
+.section-title{
 font-family:"Playfair Display",serif;
-font-size:32px;
-color:#9a7337;
+font-size:34px;
 font-weight:500;
-margin:0 0 18px
+color:#997235;
+margin:0 0 22px;
 }
-.verse{
+
+/* العبارة */
+
+.love-quote{
 font-family:serif;
-font-size:22px;
+font-size:24px;
 line-height:2.1;
-color:#574a38
+color:#554735;
 }
-.cards{
+
+.love-quote span{
+display:block;
+margin-top:18px;
+font-family:Cairo,sans-serif;
+font-size:16px;
+color:#a07b42;
+}
+
+/* التفاصيل */
+
+.details{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:12px
+gap:13px;
 }
-.card{
+
+.detail{
 background:#faf5e9;
-border-radius:20px;
-padding:20px 10px
+border:1px solid #eee1c8;
+border-radius:22px;
+padding:23px 10px;
 }
-.card b{
-display:block;
-color:#9b7438;
+
+.detail-icon{
+font-size:25px;
 margin-bottom:7px;
-font-size:18px
 }
-.count{
+
+.detail strong{
+display:block;
+color:#9a7338;
+font-size:18px;
+margin-bottom:6px;
+}
+
+/* العد التنازلي */
+
+.countdown{
 display:grid;
 grid-template-columns:repeat(4,1fr);
-gap:10px
+gap:12px;
 }
-.t{
-background:#faf5e9;
-border-radius:20px;
-padding:15px 5px
+
+.time{
+background:
+linear-gradient(145deg,#fffaf0,#f7efdf);
+border:1px solid #ead9b9;
+border-radius:22px;
+padding:18px 5px;
 }
-.t b{
+
+.time b{
 display:block;
-font-size:30px;
-color:#9b7438
+font-size:34px;
+color:#9a7338;
+font-weight:600;
 }
-.flower{
+
+/* بتلات */
+
+.petal{
 position:fixed;
 top:-30px;
 width:9px;
 height:14px;
-background:#c9a25d;
+background:#c8a15c;
 border-radius:80% 20% 80% 20%;
-opacity:.38;
+opacity:.35;
 z-index:1;
-animation:fall linear infinite
+animation:fall linear infinite;
 }
-.f1{left:8%;animation-duration:9s}
-.f2{left:22%;animation-duration:12s}
-.f3{left:38%;animation-duration:10s}
-.f4{left:56%;animation-duration:13s}
-.f5{left:74%;animation-duration:9s}
-.f6{left:90%;animation-duration:11s}
+
+.p1{left:7%;animation-duration:10s}
+.p2{left:20%;animation-duration:13s}
+.p3{left:37%;animation-duration:9s}
+.p4{left:54%;animation-duration:12s}
+.p5{left:72%;animation-duration:10s}
+.p6{left:90%;animation-duration:14s}
 
 @keyframes fall{
+
 to{
-transform:translateY(110vh) rotate(540deg)
+transform:
+translateY(110vh)
+rotate(540deg);
 }
+
 }
+
+/* ظهور */
 
 .reveal{
 opacity:0;
 transform:translateY(35px);
-transition:1s
-}
-.reveal.show{
-opacity:1;
-transform:none
-}
-footer{
-text-align:center;
-color:#9a896d;
-font-size:13px;
-padding:20px
+transition:1s ease;
 }
 
-@media(max-width:600px){
-.names{font-size:53px}
-.introbox h1{font-size:45px}
-.cards{grid-template-columns:1fr}
-.count{grid-template-columns:repeat(2,1fr)}
-.verse{font-size:19px}
+.reveal.show{
+opacity:1;
+transform:none;
 }
+
+/* الموسيقى */
+
+.music-button{
+position:fixed;
+left:17px;
+bottom:17px;
+z-index:40;
+width:52px;
+height:52px;
+border-radius:50%;
+border:1px solid #b89550;
+background:#fffaf0;
+color:#997238;
+font-size:20px;
+box-shadow:0 8px 28px #5d431e22;
+cursor:pointer;
+}
+
+footer{
+text-align:center;
+padding:25px;
+font-size:13px;
+color:#9b896c;
+}
+
+/* موبايل */
+
+@media(max-width:600px){
+
+.names{
+font-size:55px;
+}
+
+.intro h1{
+font-size:46px;
+}
+
+.details{
+grid-template-columns:1fr;
+}
+
+.countdown{
+grid-template-columns:repeat(2,1fr);
+}
+
+.love-quote{
+font-size:20px;
+}
+
+.section{
+padding:30px 18px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<div id="intro">
-<div class="introbox">
+<!-- شاشة البداية -->
 
-<div class="kicker">
-WEDDING INVITATION
+<div class="intro" id="intro">
+
+<div class="intro-content">
+
+<div class="bismillah">
+بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
 </div>
 
-<div style="font-family:serif;font-size:18px;margin-top:24px">
-بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+<div class="intro-small">
+WEDDING INVITATION
 </div>
 
 <h1>
 علي & عائشة
 </h1>
 
-<p>
-جنةُ الأطفالِ منازلُهم… وفرحتنا اليوم أجمل حكاية
-</p>
+<div class="intro-text">
+بكل حب وسعادة ندعوكم لمشاركتنا أجمل ليلة<br>
+ليلة تبدأ فيها حكاية جديدة
+</div>
 
-<button class="goldbtn" onclick="enter()">
+<button class="gold-button" onclick="openInvitation()">
 فتح الدعوة ✦
 </button>
 
 </div>
+
 </div>
 
-<button class="music" id="musicBtn" onclick="toggleMusic()">
+
+<!-- زر الأغنية -->
+
+<button
+class="music-button"
+id="musicButton"
+onclick="toggleMusic()">
 ♫
 </button>
 
-<div class="flower f1"></div>
-<div class="flower f2"></div>
-<div class="flower f3"></div>
-<div class="flower f4"></div>
-<div class="flower f5"></div>
-<div class="flower f6"></div>
+
+<!-- البتلات -->
+
+<div class="petal p1"></div>
+<div class="petal p2"></div>
+<div class="petal p3"></div>
+<div class="petal p4"></div>
+<div class="petal p5"></div>
+<div class="petal p6"></div>
+
 
 <main>
 
+<!-- الواجهة -->
+
 <section class="hero">
 
-<div>
+<div class="hero-ring"></div>
 
-<div class="kicker">
+<div class="hero-content">
+
+<div class="hero-small">
 بِكُلِّ حُبٍّ نَدْعُوكُمْ لِفَرْحَتِنَا
 </div>
 
@@ -297,24 +441,24 @@ WEDDING INVITATION
 </div>
 
 <div class="date">
-الأربعاء • 2 ديسمبر 2026 • 5:00 مساءً
+الأربعاء • 2 ديسمبر 2026 • الساعة 5 مساءً
 </div>
 
-<div class="venue">
+<div class="place">
 قاعة كلكامش – فندق بابل
 </div>
 
-<div class="buttons">
+<div class="actions">
 
 <a
-class="goldbtn btn"
+class="gold-button"
 target="_blank"
 href="https://www.google.com/maps/search/?api=1&query=Babylon+Hotel+Baghdad">
 الموقع 📍
 </a>
 
 <a
-class="goldbtn btn"
+class="gold-button"
 target="_blank"
 href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=زفاف+علي+وعائشة&dates=20261202T140000Z/20261202T180000Z&location=قاعة+كلكامش+-+فندق+بابل">
 أضف الموعد 📅
@@ -326,43 +470,75 @@ href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=زفاف+
 
 </section>
 
+
+<!-- الآية -->
+
 <section class="section reveal">
 
-<h2>
+<h2 class="section-title">
 ومن آياته
 </h2>
 
-<div class="verse">
+<div class="love-quote">
+
 وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا
 لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
-</div>
 
-<p>
+<span>
 صدق الله العظيم
-</p>
+</span>
+
+</div>
 
 </section>
 
+
+<!-- العبارة -->
+
 <section class="section reveal">
 
-<h2>
+<h2 class="section-title">
+حكاية العمر
+</h2>
+
+<div class="love-quote">
+
+«وتزهرُ البيوتُ بالمحبّة،
+وتحلو الحياةُ حين يجمعُ اللهُ قلبين
+على المودّة والرحمة،
+وتصبحُ ضحكاتُ الأطفال
+أجمل فصول الحكاية.»
+
+</div>
+
+</section>
+
+
+<!-- التفاصيل -->
+
+<section class="section reveal">
+
+<h2 class="section-title">
 تفاصيل ليلتنا
 </h2>
 
-<div class="cards">
+<div class="details">
 
-<div class="card">
-<b>التاريخ</b>
+<div class="detail">
+<div class="detail-icon">💍</div>
+<strong>التاريخ</strong>
 2 ديسمبر 2026
 </div>
 
-<div class="card">
-<b>الوقت</b>
+<div class="detail">
+<div class="detail-icon">🕊️</div>
+<strong>الوقت</strong>
 5:00 مساءً
 </div>
 
-<div class="card">
-<b>المكان</b>
+<div class="detail">
+<div class="detail-icon">🏛️</div>
+<strong>المكان</strong>
 قاعة كلكامش<br>
 فندق بابل
 </div>
@@ -371,31 +547,34 @@ href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=زفاف+
 
 </section>
 
+
+<!-- العد التنازلي -->
+
 <section class="section reveal">
 
-<h2>
+<h2 class="section-title">
 باقي على فرحتنا
 </h2>
 
-<div class="count">
+<div class="countdown">
 
-<div class="t">
-<b id="d">0</b>
+<div class="time">
+<b id="days">0</b>
 يوم
 </div>
 
-<div class="t">
-<b id="h">0</b>
+<div class="time">
+<b id="hours">0</b>
 ساعة
 </div>
 
-<div class="t">
-<b id="m">0</b>
+<div class="time">
+<b id="minutes">0</b>
 دقيقة
 </div>
 
-<div class="t">
-<b id="s">0</b>
+<div class="time">
+<b id="seconds">0</b>
 ثانية
 </div>
 
@@ -403,179 +582,141 @@ href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=زفاف+
 
 </section>
 
+
+<!-- الرسالة -->
+
 <section class="section reveal">
 
-<h2>
-أجمل ما في ليلتنا
+<h2 class="section-title">
+وجودكم أجمل هدية
 </h2>
 
 <p style="font-size:18px;line-height:2">
-حضوركم يكمّل فرحتنا، ووجودكم بيننا يجعل هذه الليلة ذكرى لا تُنسى.
-أهلاً بكم في بداية حكاية علي وعائشة 🤍
+
+حضوركم يكمّل فرحتنا،
+ومشاركتكم لنا هذه الليلة
+ستبقى ذكرى جميلة في قلوبنا.
+
+<br><br>
+
+أهلاً وسهلاً بكم
+في ليلة علي وعائشة 🤍
+
 </p>
 
 </section>
 
+
 <footer>
-علي & عائشة • بكل حب
+علي & عائشة
+<br>
+بكل حب 🤍
 </footer>
 
 </main>
 
+
 <script>
 
-function enter(){
+/* فتح الدعوة */
 
-document.getElementById('intro').classList.add('hide');
+function openInvitation(){
 
-startMusic();
-
-}
-
-const target =
-new Date('2026-12-02T17:00:00+03:00').getTime();
-
-function countdown(){
-
-let x =
-Math.max(0,target-Date.now());
-
-d.textContent =
-Math.floor(x/86400000);
-
-h.textContent =
-Math.floor(x/3600000)%24;
-
-m.textContent =
-Math.floor(x/60000)%60;
-
-s.textContent =
-Math.floor(x/1000)%60;
+document
+.getElementById("intro")
+.classList.add("hide");
 
 }
 
-countdown();
 
-setInterval(countdown,1000);
+/* العد التنازلي */
 
-const ob =
+const weddingDate =
+new Date("2026-12-02T17:00:00+03:00").getTime();
+
+function updateCountdown(){
+
+const now =
+new Date().getTime();
+
+const difference =
+Math.max(0,weddingDate-now);
+
+document.getElementById("days").textContent =
+Math.floor(difference/86400000);
+
+document.getElementById("hours").textContent =
+Math.floor(difference/3600000)%24;
+
+document.getElementById("minutes").textContent =
+Math.floor(difference/60000)%60;
+
+document.getElementById("seconds").textContent =
+Math.floor(difference/1000)%60;
+
+}
+
+updateCountdown();
+
+setInterval(updateCountdown,1000);
+
+
+/* ظهور الأقسام */
+
+const observer =
 new IntersectionObserver(
-es =>
-es.forEach(
-e =>
-e.isIntersecting &&
-e.target.classList.add('show')
-),
+
+entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
+
+});
+
+},
+
 {threshold:.12}
+
 );
 
 document
-.querySelectorAll('.reveal')
-.forEach(x=>ob.observe(x));
+.querySelectorAll(".reveal")
+.forEach(element=>observer.observe(element));
 
-let ctx,master,playing=false,timer;
 
-function startMusic(){
+/*
+الموسيقى:
+بعد ما ترفع ملف الأغنية، نضيفه هنا.
+*/
 
-if(playing)return;
-
-ctx =
-ctx ||
-new (window.AudioContext ||
-window.webkitAudioContext)();
-
-master =
-ctx.createGain();
-
-master.gain.value=.045;
-
-master.connect(ctx.destination);
-
-playing=true;
-
-const notes=[
-261.63,
-329.63,
-392,
-329.63,
-293.66,
-349.23,
-440,
-349.23
-];
-
-let i=0;
-
-function note(){
-
-if(!playing)return;
-
-const o =
-ctx.createOscillator();
-
-const g =
-ctx.createGain();
-
-o.type='sine';
-
-o.frequency.value =
-notes[i++%notes.length];
-
-g.gain.setValueAtTime(
-0,
-ctx.currentTime
-);
-
-g.gain.linearRampToValueAtTime(
-.22,
-ctx.currentTime+.12
-);
-
-g.gain.exponentialRampToValueAtTime(
-.001,
-ctx.currentTime+1.8
-);
-
-o.connect(g);
-g.connect(master);
-
-o.start();
-
-o.stop(
-ctx.currentTime+1.9
-);
-
-timer =
-setTimeout(note,900);
-
-}
-
-note();
-
-}
+let audio;
+let musicPlaying=false;
 
 function toggleMusic(){
 
-if(!playing){
+if(!audio){
 
-startMusic();
+alert("ارفع ملف الأغنية أولاً حتى نضيفه للدعوة ❤️");
+return;
 
-musicBtn.textContent='♫';
+}
+
+if(musicPlaying){
+
+audio.pause();
+musicPlaying=false;
+document.getElementById("musicButton").textContent="♫";
 
 }else{
 
-playing=false;
-
-clearTimeout(timer);
-
-if(master)
-master.gain.setTargetAtTime(
-0,
-ctx.currentTime,
-.15
-);
-
-musicBtn.textContent='🔇';
+audio.play();
+musicPlaying=true;
+document.getElementById("musicButton").textContent="🔊";
 
 }
 
