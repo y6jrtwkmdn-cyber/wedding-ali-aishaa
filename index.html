@@ -4,759 +4,449 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>دعوة زفاف علي وعائشة</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&display=swap" rel="stylesheet">
+<title>Ali & Aisha</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap');
 
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
+    box-sizing:border-box;
 }
 
 body{
-    background:#fffdf9;
-    color:#51452f;
-    font-family:"Amiri",serif;
+    background:#fff;
+    color:#2f2a25;
     overflow-x:hidden;
+    font-family:'Amiri',serif;
 }
 
-/* خلفية فاخرة */
-
-body::before{
-    content:"";
+/* شاشة البداية */
+.intro{
     position:fixed;
     inset:0;
-    pointer-events:none;
-    background:
-        radial-gradient(circle at 50% 15%,rgba(194,157,76,.13),transparent 30%),
-        radial-gradient(circle at 10% 80%,rgba(194,157,76,.08),transparent 25%),
-        radial-gradient(circle at 90% 60%,rgba(194,157,76,.07),transparent 25%);
+    background:#fff;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:fadeOut 2s ease 3s forwards;
 }
 
-/* الصفحة الرئيسية */
+.intro-text{
+    text-align:center;
+    animation:zoomIn 2s ease;
+}
 
-.hero{
+.intro-text small{
+    color:#a9894b;
+    letter-spacing:4px;
+}
+
+.intro-text h1{
+    font-family:'Cormorant Garamond',serif;
+    font-size:55px;
+    color:#a9894b;
+    margin-top:10px;
+}
+
+@keyframes zoomIn{
+    from{opacity:0;transform:scale(.7)}
+    to{opacity:1;transform:scale(1)}
+}
+
+@keyframes fadeOut{
+    to{opacity:0;visibility:hidden}
+}
+
+/* الخلفية */
+.page{
     min-height:100vh;
     position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:35px 20px;
+    overflow:hidden;
+    padding:55px 20px;
 }
 
-.hero-frame{
+/* زخارف ذهبية */
+.gold-circle{
     position:absolute;
-    inset:18px;
-    border:1px solid rgba(180,142,57,.45);
+    width:280px;
+    height:280px;
+    border:1px solid rgba(169,137,75,.25);
+    border-radius:50%;
+    animation:rotate 18s linear infinite;
 }
 
-.hero-frame::after{
-    content:"";
+.circle1{
+    top:-130px;
+    right:-120px;
+}
+
+.circle2{
+    bottom:-140px;
+    left:-120px;
+    animation-direction:reverse;
+}
+
+@keyframes rotate{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
+/* ورود متحركة */
+.flower{
     position:absolute;
-    inset:12px;
-    border:1px solid rgba(180,142,57,.15);
+    font-size:38px;
+    opacity:.25;
+    animation:float 6s ease-in-out infinite;
 }
 
-/* الزوايا */
-
-.corner{
-    position:absolute;
-    width:90px;
-    height:90px;
-    z-index:2;
+.flower1{
+    top:15%;
+    left:7%;
 }
 
-.corner.one{
-    top:30px;
-    left:30px;
-    border-top:2px solid #c9a85d;
-    border-left:2px solid #c9a85d;
+.flower2{
+    top:55%;
+    right:5%;
+    animation-delay:2s;
 }
 
-.corner.two{
-    top:30px;
-    right:30px;
-    border-top:2px solid #c9a85d;
-    border-right:2px solid #c9a85d;
+.flower3{
+    bottom:12%;
+    left:12%;
+    animation-delay:4s;
 }
 
-.corner.three{
-    bottom:30px;
-    left:30px;
-    border-bottom:2px solid #c9a85d;
-    border-left:2px solid #c9a85d;
-}
-
-.corner.four{
-    bottom:30px;
-    right:30px;
-    border-bottom:2px solid #c9a85d;
-    border-right:2px solid #c9a85d;
+@keyframes float{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+    50%{
+        transform:translateY(-25px) rotate(8deg);
+    }
 }
 
 /* المحتوى */
-
-.hero-content{
-    position:relative;
-    z-index:3;
-    animation:appear 1.8s ease;
-}
-
-.bismillah{
-    font-size:22px;
-    color:#a88642;
-    margin-bottom:30px;
-}
-
-.invitation{
-    font-size:20px;
-    color:#88734d;
-    letter-spacing:1px;
-}
-
-.names{
-    direction:ltr;
-    font-family:"Cormorant Garamond",serif;
-    font-style:italic;
-    font-size:clamp(60px,15vw,125px);
-    color:#b08b43;
-    line-height:1;
-    margin:25px 0;
-    text-shadow:0 4px 25px rgba(176,139,67,.15);
-}
-
-.amp{
-    font-size:.55em;
-    color:#d1b26b;
-}
-
-.line{
-    width:130px;
-    height:1px;
-    margin:25px auto;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #c8a75d,
-        transparent
-    );
-}
-
-.wedding-text{
-    font-size:23px;
-    color:#67583e;
-}
-
-.date{
-    direction:ltr;
-    margin-top:35px;
-    font-family:"Cormorant Garamond",serif;
-    font-size:29px;
-    letter-spacing:5px;
-    color:#a7833e;
-}
-
-.time{
-    margin-top:8px;
-    font-size:20px;
-    color:#806b46;
-}
-
-/* الأقسام */
-
-.section{
-    padding:100px 25px;
-    text-align:center;
-    position:relative;
-}
-
-.section h2{
-    font-size:40px;
-    font-weight:400;
-    color:#a7833e;
-}
-
-.section-text{
-    max-width:650px;
-    margin:30px auto;
-    font-size:22px;
-    line-height:2;
-    color:#665940;
-}
-
-/* التفاصيل */
-
-.details{
-    max-width:900px;
-    margin:50px auto 0;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
 .card{
-    background:rgba(255,255,255,.75);
-    border:1px solid rgba(181,143,58,.3);
-    padding:38px 20px;
-    min-height:190px;
-    box-shadow:0 12px 40px rgba(130,100,40,.06);
-    transition:.5s;
-}
-
-.card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 20px 45px rgba(130,100,40,.12);
-    border-color:#b9954b;
-}
-
-.icon{
-    color:#bd994e;
-    font-size:29px;
-    margin-bottom:15px;
-}
-
-.card h3{
-    color:#a7833e;
-    font-size:18px;
-    margin-bottom:10px;
-}
-
-.card p{
-    font-size:21px;
-    color:#665940;
-}
-
-/* الموقع */
-
-.map-button{
-    display:inline-block;
-    margin-top:35px;
-    padding:14px 38px;
-    border:1px solid #b9954b;
-    color:#9b7838;
-    text-decoration:none;
-    font-size:18px;
-    transition:.4s;
-}
-
-.map-button:hover{
-    background:#b9954b;
-    color:white;
-}
-
-/* العد التنازلي */
-
-.countdown{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    flex-wrap:wrap;
-    direction:ltr;
-    margin-top:45px;
-}
-
-.count{
-    width:115px;
-    padding:20px 10px;
-    border:1px solid rgba(185,149,75,.35);
-    background:white;
-}
-
-.count span{
-    display:block;
-    font-family:"Cormorant Garamond",serif;
-    font-size:42px;
-    color:#a7833e;
-}
-
-.count small{
-    color:#88734d;
-    letter-spacing:2px;
-}
-
-/* عبارة الأطفال */
-
-.children{
-    max-width:600px;
-    margin:40px auto;
-    padding:28px 20px;
-    border-top:1px solid rgba(185,149,75,.4);
-    border-bottom:1px solid rgba(185,149,75,.4);
     position:relative;
-}
-
-.children::before{
-    content:"✦";
-    position:absolute;
-    top:-13px;
-    left:50%;
-    transform:translateX(-50%);
-    background:#fffdf9;
-    padding:0 12px;
-    color:#bd994e;
-}
-
-.children-text{
-    font-size:25px;
-    color:#9a7737;
-}
-
-/* الفوتر */
-
-.footer{
-    padding:80px 20px;
+    max-width:650px;
+    margin:auto;
     text-align:center;
-    color:#88734d;
+    padding:45px 25px;
+    border:1px solid rgba(169,137,75,.35);
+    box-shadow:0 15px 60px rgba(0,0,0,.06);
+    background:rgba(255,255,255,.94);
+    animation:cardIn 1.8s ease;
 }
 
-.footer-names{
-    direction:ltr;
-    font-family:"Cormorant Garamond",serif;
-    font-style:italic;
-    font-size:42px;
-    color:#b08b43;
-}
-
-/* الموسيقى */
-
-.music-button{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    width:58px;
-    height:58px;
-    border-radius:50%;
-    border:1px solid #b9954b;
-    background:#fffdf9;
-    color:#a7833e;
-    font-size:21px;
-    cursor:pointer;
-    z-index:100;
-    box-shadow:0 5px 25px rgba(100,70,20,.12);
-}
-
-/* الجزيئات الذهبية */
-
-.spark{
-    position:fixed;
-    width:3px;
-    height:3px;
-    background:#c8a75d;
-    border-radius:50%;
-    pointer-events:none;
-    opacity:.5;
-    animation:float 8s linear infinite;
-}
-
-/* الحركات */
-
-@keyframes appear{
-
+@keyframes cardIn{
     from{
         opacity:0;
-        transform:translateY(30px);
+        transform:translateY(50px);
     }
-
     to{
         opacity:1;
         transform:translateY(0);
     }
-
 }
 
-@keyframes float{
-
-    from{
-        transform:translateY(105vh);
-        opacity:0;
-    }
-
-    20%{
-        opacity:.6;
-    }
-
-    to{
-        transform:translateY(-10vh);
-        opacity:0;
-    }
-
+.top-line{
+    color:#a9894b;
+    letter-spacing:5px;
+    font-size:13px;
 }
 
-/* الموبايل */
+h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:24px;
+    font-weight:500;
+    margin-top:25px;
+}
 
-@media(max-width:700px){
+.names{
+    font-family:'Cormorant Garamond',serif;
+    color:#a9894b;
+    font-size:68px;
+    line-height:1;
+    margin:18px 0;
+    animation:nameGlow 3s ease-in-out infinite;
+}
 
-    .details{
-        grid-template-columns:1fr;
-        max-width:430px;
-    }
+@keyframes nameGlow{
+    0%,100%{opacity:.8}
+    50%{opacity:1;text-shadow:0 0 20px rgba(169,137,75,.25)}
+}
 
+.amp{
+    font-size:35px;
+    color:#8c6d39;
+}
+
+.divider{
+    width:90px;
+    height:1px;
+    background:#a9894b;
+    margin:25px auto;
+}
+
+.details{
+    font-size:22px;
+    line-height:2;
+}
+
+.details strong{
+    color:#a9894b;
+}
+
+.date{
+    font-family:'Cormorant Garamond',serif;
+    font-size:32px;
+    color:#a9894b;
+    margin:10px 0;
+}
+
+.venue{
+    font-size:25px;
+}
+
+/* العد التنازلي */
+.countdown{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin:30px 0;
+    direction:ltr;
+}
+
+.time-box{
+    width:70px;
+    padding:10px 5px;
+    border:1px solid rgba(169,137,75,.35);
+}
+
+.time-box span{
+    display:block;
+    font-family:'Cormorant Garamond',serif;
+    font-size:28px;
+    color:#a9894b;
+}
+
+.time-box small{
+    font-size:12px;
+}
+
+/* تنويه الأطفال */
+.notice{
+    margin-top:35px;
+    padding:18px;
+    border-top:1px solid rgba(169,137,75,.3);
+    border-bottom:1px solid rgba(169,137,75,.3);
+    animation:pulse 4s ease-in-out infinite;
+}
+
+.notice-title{
+    color:#a9894b;
+    font-size:18px;
+    margin-bottom:7px;
+}
+
+.notice-text{
+    font-size:18px;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:.75}
+    50%{opacity:1}
+}
+
+/* زر الموسيقى */
+.music{
+    margin:30px auto 0;
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:1px solid #a9894b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#a9894b;
+    cursor:pointer;
+    animation:musicPulse 2s infinite;
+}
+
+@keyframes musicPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(169,137,75,.15)}
+    50%{box-shadow:0 0 0 12px rgba(169,137,75,0)}
+}
+
+.footer{
+    margin-top:35px;
+    color:#a9894b;
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;
+}
+
+/* موبايل */
+@media(max-width:600px){
     .names{
-        font-size:64px;
+        font-size:55px;
     }
 
-    .hero-frame{
-        inset:12px;
+    .card{
+        padding:40px 18px;
     }
 
-    .corner{
-        width:60px;
-        height:60px;
+    .countdown{
+        gap:6px;
     }
 
-    .corner.one{
-        top:22px;
-        left:22px;
+    .time-box{
+        width:62px;
     }
-
-    .corner.two{
-        top:22px;
-        right:22px;
-    }
-
-    .corner.three{
-        bottom:22px;
-        left:22px;
-    }
-
-    .corner.four{
-        bottom:22px;
-        right:22px;
-    }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- الواجهة -->
-
-<section class="hero">
-
-<div class="hero-frame"></div>
-
-<div class="corner one"></div>
-<div class="corner two"></div>
-<div class="corner three"></div>
-<div class="corner four"></div>
-
-<div class="hero-content">
-
-<div class="bismillah">
-بسم الله الرحمن الرحيم
+<!-- شاشة البداية -->
+<div class="intro">
+    <div class="intro-text">
+        <small>THE WEDDING OF</small>
+        <h1>Ali & Aisha</h1>
+    </div>
 </div>
 
-<div class="invitation">
-بكل الحب والفرح نتشرف بدعوتكم لمشاركتنا فرحتنا
+<div class="page">
+
+    <div class="gold-circle circle1"></div>
+    <div class="gold-circle circle2"></div>
+
+    <div class="flower flower1">🌸</div>
+    <div class="flower flower2">🌿</div>
+    <div class="flower flower3">🌸</div>
+
+    <div class="card">
+
+        <div class="top-line">A BEAUTIFUL BEGINNING</div>
+
+        <h2>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</h2>
+
+        <div class="divider"></div>
+
+        <div class="names">
+            Ali
+            <div class="amp">&</div>
+            Aisha
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="details">
+            <div>بكل حب وسعادة</div>
+            <div>نتشرف بدعوتكم لمشاركتنا فرحتنا</div>
+
+            <div class="date">
+                02 • 12 • 2026
+            </div>
+
+            <div class="venue">
+                قاعة <strong>كلكامش</strong><br>
+                فندق بابل
+            </div>
+
+            <div style="margin-top:10px;">
+                الساعة <strong>5:00 مساءً</strong>
+            </div>
+        </div>
+
+        <!-- العد التنازلي -->
+        <div class="countdown">
+
+            <div class="time-box">
+                <span id="days">00</span>
+                <small>Days</small>
+            </div>
+
+            <div class="time-box">
+                <span id="hours">00</span>
+                <small>Hours</small>
+            </div>
+
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <small>Minutes</small>
+            </div>
+
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <small>Seconds</small>
+            </div>
+
+        </div>
+
+        <!-- تنويه -->
+        <div class="notice">
+            <div class="notice-title">تنويه خاص</div>
+            <div class="notice-text">
+                إدارة الفندق تمنع اصطحاب الأطفال
+            </div>
+        </div>
+
+        <!-- الموسيقى -->
+        <div class="music" onclick="toggleMusic()" id="musicButton">
+            ♪
+        </div>
+
+        <div class="footer">
+            With Love
+        </div>
+
+    </div>
 </div>
-
-<div class="names">
-𝓐𝓵𝓲 <span class="amp">&</span> 𝓐𝓲𝓼𝓱𝓪
-</div>
-
-<div class="line"></div>
-
-<div class="wedding-text">
-بمناسبة زفافنا
-</div>
-
-<div class="date">
-02 · 12 · 2026
-</div>
-
-<div class="time">
-الساعة الخامسة مساءً
-</div>
-
-</div>
-
-</section>
-
-
-<!-- الرسالة -->
-
-<section class="section">
-
-<h2>فرحتنا بوجودكم تكتمل</h2>
-
-<div class="line"></div>
-
-<p class="section-text">
-يسعدنا أن نشارككم أجمل أيام حياتنا،
-ونتمنى أن تنيروا فرحتنا بحضوركم
-وتشاركونا هذه اللحظات الجميلة.
-</p>
-
-</section>
-
-
-<!-- التفاصيل -->
-
-<section class="section">
-
-<h2>تفاصيل المناسبة</h2>
-
-<div class="line"></div>
-
-<div class="details">
-
-<div class="card">
-
-<div class="icon">✦</div>
-
-<h3>التاريخ</h3>
-
-<p>
-2 ديسمبر 2026
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">◷</div>
-
-<h3>الوقت</h3>
-
-<p>
-الساعة 5:00 مساءً
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">⌖</div>
-
-<h3>المكان</h3>
-
-<p>
-قاعة كلكامش<br>
-فندق بابل
-</p>
-
-</div>
-
-</div>
-
-
-<a
-class="map-button"
-href="https://www.google.com/maps/search/?api=1&query=Gilgamesh+Hall+Babylon+Hotel+Baghdad"
-target="_blank">
-
-فتح الموقع
-
-</a>
-
-</section>
-
-
-<!-- العد التنازلي -->
-
-<section class="section">
-
-<h2>موعد فرحتنا</h2>
-
-<div class="line"></div>
-
-<div class="countdown">
-
-<div class="count">
-<span id="days">00</span>
-<small>يوم</small>
-</div>
-
-<div class="count">
-<span id="hours">00</span>
-<small>ساعة</small>
-</div>
-
-<div class="count">
-<span id="minutes">00</span>
-<small>دقيقة</small>
-</div>
-
-<div class="count">
-<span id="seconds">00</span>
-<small>ثانية</small>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- الأطفال -->
-
-<section class="section">
-
-<h2>تنويه</h2>
-
-<div class="line"></div>
-
-<div class="children">
-
-<div class="children-text">
-جنةُ الأطفالِ منازلُهم 🤍
-</div>
-
-</div>
-
-</section>
-
-
-<!-- النهاية -->
-
-<footer class="footer">
-
-<div class="footer-names">
-𝓐𝓵𝓲 & 𝓐𝓲𝓼𝓱𝓪
-</div>
-
-<div class="line"></div>
-
-2 ديسمبر 2026
-
-</footer>
-
-
-<!-- الموسيقى -->
 
 <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
+    <source src="song.mp3" type="audio/mpeg">
 </audio>
-
-<button class="music-button" id="musicButton">
-♫
-</button>
-
 
 <script>
 
 /* العد التنازلي */
+const weddingDate = new Date("December 2, 2026 17:00:00").getTime();
 
-const weddingDate =
-new Date("December 2, 2026 17:00:00").getTime();
-
-function updateCountdown(){
+setInterval(function(){
 
     const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-    const distance =
-    weddingDate - now;
+    const days = Math.floor(distance / (1000*60*60*24));
+    const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+    const seconds = Math.floor((distance % (1000*60))/1000);
 
-    if(distance <= 0){
+    document.getElementById("days").innerText = Math.max(days,0);
+    document.getElementById("hours").innerText = Math.max(hours,0);
+    document.getElementById("minutes").innerText = Math.max(minutes,0);
+    document.getElementById("seconds").innerText = Math.max(seconds,0);
 
-        document.getElementById("days").innerText="00";
-        document.getElementById("hours").innerText="00";
-        document.getElementById("minutes").innerText="00";
-        document.getElementById("seconds").innerText="00";
-
-        return;
-    }
-
-    const days =
-    Math.floor(
-        distance/(1000*60*60*24)
-    );
-
-    const hours =
-    Math.floor(
-        (distance%(1000*60*60*24))
-        /(1000*60*60)
-    );
-
-    const minutes =
-    Math.floor(
-        (distance%(1000*60*60))
-        /(1000*60)
-    );
-
-    const seconds =
-    Math.floor(
-        (distance%(1000*60))/1000
-    );
-
-    document.getElementById("days").innerText =
-    String(days).padStart(2,"0");
-
-    document.getElementById("hours").innerText =
-    String(hours).padStart(2,"0");
-
-    document.getElementById("minutes").innerText =
-    String(minutes).padStart(2,"0");
-
-    document.getElementById("seconds").innerText =
-    String(seconds).padStart(2,"0");
-}
-
-updateCountdown();
-
-setInterval(updateCountdown,1000);
+},1000);
 
 
 /* الموسيقى */
+function toggleMusic(){
 
-const music =
-document.getElementById("music");
-
-const musicButton =
-document.getElementById("musicButton");
-
-musicButton.addEventListener("click",function(){
+    const music = document.getElementById("music");
+    const button = document.getElementById("musicButton");
 
     if(music.paused){
-
         music.play();
-
-        musicButton.innerHTML="❚❚";
-
+        button.innerHTML = "❚❚";
     }else{
-
         music.pause();
-
-        musicButton.innerHTML="♫";
-
+        button.innerHTML = "♪";
     }
-
-});
-
-
-/* ذرات ذهبية */
-
-for(let i=0;i<35;i++){
-
-    const spark =
-    document.createElement("div");
-
-    spark.className="spark";
-
-    spark.style.left =
-    Math.random()*100+"vw";
-
-    spark.style.animationDelay =
-    Math.random()*8+"s";
-
-    spark.style.animationDuration =
-    (6+Math.random()*8)+"s";
-
-    document.body.appendChild(spark);
 
 }
 
