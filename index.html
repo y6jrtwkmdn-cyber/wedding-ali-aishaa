@@ -4,68 +4,80 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ali & Aisha | Wedding Invitation</title>
+<title>Ali & Aisha | Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
-    background:#f5eee7;
+    background:#eee2d7;
+    color:#fff;
     overflow:hidden;
-    font-family:'Noto Naskh Arabic',serif;
 }
 
 /* =========================
-   INTRO
+   ENVELOPE INTRO
 ========================= */
 
 .intro{
     position:fixed;
     inset:0;
-    z-index:20;
+    z-index:100;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     background:
-        radial-gradient(circle at center,#fffdf9 0%,#f4e9df 55%,#e8d8ca 100%);
-    transition:1.8s ease;
+        radial-gradient(circle at center,
+        #fffdf9 0%,
+        #f8eee5 48%,
+        #e7d5c5 100%);
+    transition:1.6s ease;
 }
 
 .intro.hide{
     opacity:0;
-    pointer-events:none;
+    visibility:hidden;
 }
 
 .envelope{
-    position:relative;
     width:330px;
-    height:230px;
+    height:225px;
+    position:relative;
     cursor:pointer;
     perspective:1000px;
 }
 
-.envelope-body{
+.envelope-box{
     position:absolute;
     inset:0;
-    background:linear-gradient(145deg,#fffdf9,#eee0d3);
-    border-radius:5px;
+    border-radius:6px;
+    background:linear-gradient(
+        145deg,
+        #fffdf9,
+        #eee0d2
+    );
     box-shadow:
-        0 30px 80px rgba(90,65,45,.22),
-        inset 0 0 0 1px rgba(175,135,90,.35);
-    overflow:hidden;
+        0 35px 90px rgba(75,50,30,.25),
+        inset 0 0 0 1px rgba(175,130,70,.35);
 }
 
-.envelope-body:after{
+.envelope-box:after{
     content:"";
     position:absolute;
     inset:12px;
-    border:1px solid rgba(170,125,70,.4);
+    border:1px solid rgba(174,130,72,.4);
 }
 
 .flap{
@@ -75,12 +87,13 @@ body{
     left:0;
     width:0;
     height:0;
+
     border-left:165px solid transparent;
     border-right:165px solid transparent;
-    border-top:125px solid #e8d6c6;
+    border-top:125px solid #e5d1c0;
+
     transform-origin:top;
     transition:1.5s cubic-bezier(.2,.8,.2,1);
-    filter:drop-shadow(0 5px 4px rgba(0,0,0,.12));
 }
 
 .envelope.open .flap{
@@ -89,59 +102,83 @@ body{
 
 .seal{
     position:absolute;
-    z-index:8;
+    z-index:10;
     left:50%;
-    top:53%;
+    top:52%;
     transform:translate(-50%,-50%);
-    width:68px;
-    height:68px;
+
+    width:70px;
+    height:70px;
+
     border-radius:50%;
-    background:linear-gradient(145deg,#d8b77b,#a98243);
+
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e5c787,
+            #a87e3f
+        );
+
     color:white;
+
     font-family:'Cormorant Garamond',serif;
     font-size:25px;
-    box-shadow:0 10px 30px rgba(110,75,35,.3);
-    transition:.8s;
+
+    box-shadow:
+        0 10px 30px rgba(90,60,25,.3);
+
+    transition:.7s;
 }
 
 .envelope.open .seal{
     opacity:0;
-    transform:translate(-50%,-50%) scale(.3);
+    transform:translate(-50%,-50%) scale(.2);
 }
 
-.open-text{
+.open-label{
     position:absolute;
-    top:calc(50% + 150px);
+    top:calc(50% + 155px);
     left:50%;
     transform:translateX(-50%);
-    color:#9c7745;
+
     font-family:'Cormorant Garamond',serif;
     font-size:17px;
-    letter-spacing:3px;
-    white-space:nowrap;
-    animation:pulse 2s infinite;
+    letter-spacing:4px;
+
+    color:#9d7743;
+
+    animation:breath 2s infinite;
 }
 
-@keyframes pulse{
-    50%{opacity:.45}
+@keyframes breath{
+    0%,100%{opacity:.45}
+    50%{opacity:1}
 }
+
 
 /* =========================
-   INVITATION
+   MAIN INVITATION
 ========================= */
 
 .invitation{
     position:fixed;
     inset:0;
+
+    opacity:0;
+    transform:scale(1.04);
+
+    transition:
+        opacity 1.7s ease,
+        transform 2s ease;
+
     overflow-y:auto;
     overflow-x:hidden;
-    opacity:0;
-    transform:scale(1.08);
-    transition:2s cubic-bezier(.2,.8,.2,1);
-    background:#f8f0e9;
+
+    background:#e8dcd1;
 }
 
 .invitation.show{
@@ -149,81 +186,205 @@ body{
     transform:scale(1);
 }
 
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
     position:relative;
-    width:100%;
     min-height:100vh;
+    width:100%;
     overflow:hidden;
 }
 
 .hero-image{
     position:absolute;
     inset:0;
+
     width:100%;
     height:100%;
+
     object-fit:cover;
+
     object-position:center;
-    animation:slowZoom 14s ease-in-out infinite alternate;
-    filter:saturate(.88) contrast(.96);
+
+    filter:
+        brightness(.88)
+        contrast(1.06)
+        saturate(.94);
+
+    animation:cinematicZoom 16s ease-in-out infinite alternate;
 }
 
-@keyframes slowZoom{
-    from{transform:scale(1)}
-    to{transform:scale(1.055)}
+@keyframes cinematicZoom{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.065);
+    }
 }
 
-/* soft cinematic overlay */
-
-.overlay{
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(255,249,242,.25),
-            rgba(255,249,242,.05) 45%,
-            rgba(45,30,20,.32) 100%
-        );
-}
 
 /* =========================
-   GOLD SPARKLES
+   CINEMATIC OVERLAY
+========================= */
+
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            rgba(255,250,245,.08) 0%,
+            rgba(255,250,245,.02) 35%,
+            rgba(35,24,17,.10) 65%,
+            rgba(25,18,13,.55) 100%
+        );
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   GOLD LIGHT
+========================= */
+
+.gold-light{
+    position:absolute;
+    width:240px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,221,158,.22),
+            transparent 70%
+        );
+
+    filter:blur(10px);
+
+    animation:lightMove 8s infinite alternate ease-in-out;
+
+    z-index:2;
+}
+
+.gold-light.one{
+    top:15%;
+    left:-80px;
+}
+
+.gold-light.two{
+    bottom:10%;
+    right:-90px;
+    animation-delay:2s;
+}
+
+@keyframes lightMove{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(80px,-30px);
+    }
+}
+
+
+/* =========================
+   SPARKLES
 ========================= */
 
 .sparkles{
     position:absolute;
     inset:0;
+    z-index:4;
     pointer-events:none;
 }
 
 .spark{
     position:absolute;
-    width:4px;
-    height:4px;
-    background:#fff6d9;
+
+    width:3px;
+    height:3px;
+
     border-radius:50%;
-    box-shadow:0 0 12px #fff;
-    animation:float 5s infinite ease-in-out;
+
+    background:#fff8df;
+
+    box-shadow:
+        0 0 8px #fff,
+        0 0 18px rgba(255,215,140,.8);
+
+    animation:
+        sparkle 4s infinite ease-in-out;
 }
 
-.spark:nth-child(1){left:12%;top:28%;animation-delay:0s}
-.spark:nth-child(2){left:25%;top:18%;animation-delay:1s}
-.spark:nth-child(3){left:76%;top:24%;animation-delay:2s}
-.spark:nth-child(4){left:88%;top:40%;animation-delay:3s}
-.spark:nth-child(5){left:18%;top:55%;animation-delay:1.5s}
-.spark:nth-child(6){left:70%;top:60%;animation-delay:2.5s}
-.spark:nth-child(7){left:50%;top:35%;animation-delay:.5s}
+.spark:nth-child(1){
+    left:12%;
+    top:25%;
+}
 
-@keyframes float{
+.spark:nth-child(2){
+    left:23%;
+    top:42%;
+    animation-delay:1s;
+}
+
+.spark:nth-child(3){
+    left:80%;
+    top:28%;
+    animation-delay:2s;
+}
+
+.spark:nth-child(4){
+    left:88%;
+    top:52%;
+    animation-delay:1.5s;
+}
+
+.spark:nth-child(5){
+    left:15%;
+    top:68%;
+    animation-delay:2.5s;
+}
+
+.spark:nth-child(6){
+    left:74%;
+    top:65%;
+    animation-delay:.7s;
+}
+
+.spark:nth-child(7){
+    left:50%;
+    top:18%;
+    animation-delay:1.8s;
+}
+
+.spark:nth-child(8){
+    left:58%;
+    top:48%;
+    animation-delay:3s;
+}
+
+@keyframes sparkle{
+
     0%,100%{
-        opacity:.15;
-        transform:translateY(0) scale(.7);
+        opacity:0;
+        transform:scale(.4) translateY(10px);
     }
+
     50%{
         opacity:1;
-        transform:translateY(-18px) scale(1.5);
+        transform:scale(1.8) translateY(-15px);
     }
 }
+
 
 /* =========================
    CONTENT
@@ -231,190 +392,346 @@ body{
 
 .content{
     position:relative;
-    z-index:3;
+    z-index:8;
+
     min-height:100vh;
-    padding:70px 22px 60px;
+
     display:flex;
     flex-direction:column;
     align-items:center;
+
     text-align:center;
-    color:white;
+
+    padding:
+        65px
+        22px
+        55px;
+
+    text-shadow:
+        0 2px 15px rgba(0,0,0,.45);
 }
 
-.small-title{
-    margin-top:5px;
+
+/* TOP */
+
+.top-label{
     font-family:'Cormorant Garamond',serif;
-    font-size:20px;
-    letter-spacing:6px;
-    text-transform:uppercase;
+
+    font-size:18px;
+
+    letter-spacing:7px;
+
+    color:#fff;
+
     opacity:0;
-    animation:appear 1.5s 2s forwards;
+
+    animation:
+        fadeUp 1.4s 1.2s forwards;
 }
+
+
+/* NAMES */
 
 .names{
     margin-top:18px;
+
     font-family:'Playfair Display',serif;
-    font-size:clamp(48px,13vw,82px);
-    font-weight:500;
-    line-height:.95;
-    letter-spacing:3px;
-    text-shadow:0 4px 25px rgba(0,0,0,.22);
+
+    font-size:
+        clamp(58px,16vw,90px);
+
+    font-weight:400;
+
+    line-height:.9;
+
+    letter-spacing:2px;
+
+    color:#fff;
+
     opacity:0;
-    animation:namesIn 2s 2.5s forwards;
+
+    animation:
+        namesReveal 1.8s 1.7s forwards;
 }
 
-.amp{
+.names .and{
     display:block;
+
+    margin:
+        12px
+        0;
+
     font-family:'Cormorant Garamond',serif;
-    font-size:35px;
-    margin:10px 0;
-    color:#f4d99d;
+
+    font-size:34px;
+
+    color:#e8c985;
+
+    text-shadow:
+        0 0 15px rgba(230,193,118,.5);
 }
 
-.divider{
-    width:100px;
+
+/* LINE */
+
+.gold-line{
+    width:110px;
     height:1px;
-    margin:25px auto;
-    background:linear-gradient(
-        to right,
-        transparent,
-        #f1d49a,
-        transparent
-    );
+
+    margin:25px 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #e9c77e,
+            transparent
+        );
+
     opacity:0;
-    animation:appear 1.5s 3.2s forwards;
+
+    animation:
+        fadeUp 1.2s 2.6s forwards;
 }
 
-.invite-text{
-    font-size:18px;
+
+/* ARABIC */
+
+.arabic-intro{
+    font-family:'Noto Naskh Arabic',serif;
+
+    font-size:19px;
+
     line-height:2;
-    text-shadow:0 2px 12px rgba(0,0,0,.4);
+
+    color:#fff;
+
     opacity:0;
-    animation:appear 1.5s 3.5s forwards;
+
+    animation:
+        fadeUp 1.3s 2.9s forwards;
 }
+
+
+/* DATE */
 
 .date{
-    margin-top:25px;
+    margin-top:22px;
+
     font-family:'Cormorant Garamond',serif;
-    font-size:27px;
+
+    font-size:29px;
+
     letter-spacing:2px;
+
+    color:#fff;
+
     opacity:0;
-    animation:appear 1.5s 3.8s forwards;
+
+    animation:
+        fadeUp 1.3s 3.3s forwards;
 }
 
 .time{
-    margin-top:5px;
+    margin-top:3px;
+
     font-family:'Cormorant Garamond',serif;
-    font-size:22px;
-    letter-spacing:3px;
+
+    font-size:21px;
+
+    letter-spacing:4px;
+
+    color:#f2d79e;
+
     opacity:0;
-    animation:appear 1.5s 4s forwards;
+
+    animation:
+        fadeUp 1.3s 3.5s forwards;
 }
+
+
+/* LOCATION */
 
 .location{
     margin-top:15px;
-    font-size:17px;
+
+    font-family:'Noto Naskh Arabic',serif;
+
+    font-size:18px;
+
+    color:white;
+
     opacity:0;
-    animation:appear 1.5s 4.2s forwards;
+
+    animation:
+        fadeUp 1.3s 3.7s forwards;
 }
 
+
 /* =========================
-   DETAILS CARD
+   LUXURY CARD
 ========================= */
 
-.details{
-    margin-top:35px;
-    padding:18px 30px;
-    border:1px solid rgba(255,225,175,.65);
-    background:rgba(65,45,30,.18);
-    backdrop-filter:blur(5px);
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
+.luxury-card{
+    width:min(380px,90%);
+
+    margin-top:30px;
+
+    padding:
+        20px
+        25px;
+
+    background:
+        rgba(49,35,26,.42);
+
+    border:
+        1px solid rgba(238,202,139,.75);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.18),
+        inset 0 0 25px rgba(255,255,255,.04);
+
+    backdrop-filter:blur(7px);
+
     opacity:0;
-    animation:appear 1.5s 4.5s forwards;
+
+    animation:
+        fadeUp 1.3s 4s forwards;
 }
 
-.details-title{
+.card-title{
     font-family:'Cormorant Garamond',serif;
-    font-size:17px;
-    letter-spacing:2px;
-    color:#f6dba4;
-    margin-bottom:8px;
+
+    font-size:18px;
+
+    letter-spacing:4px;
+
+    color:#edcf91;
+
+    margin-bottom:7px;
 }
 
-.details-text{
+.card-text{
+    font-family:'Noto Naskh Arabic',serif;
+
     font-size:16px;
+
+    color:#fff;
 }
+
 
 /* =========================
-   CHILDREN NOTE
+   CHILDREN
 ========================= */
 
 .children{
-    margin-top:30px;
+    margin-top:25px;
+
+    font-family:'Noto Naskh Arabic',serif;
+
     font-size:16px;
-    color:#fff8ee;
+
+    color:#fff;
+
     opacity:0;
-    animation:appear 1.5s 5s forwards;
+
+    animation:
+        fadeUp 1.3s 4.5s forwards;
 }
 
-.children span{
+.children strong{
     display:block;
+
     margin-top:5px;
-    font-family:'Cormorant Garamond',serif;
-    font-size:18px;
-    color:#f4d69c;
+
+    color:#f1cf8d;
+
+    font-size:19px;
+
+    font-weight:500;
 }
+
 
 /* =========================
-   BUTTON
+   LOCATION BUTTON
 ========================= */
 
 .location-btn{
-    margin-top:25px;
-    padding:12px 28px;
-    border:1px solid rgba(255,220,170,.8);
-    border-radius:30px;
-    background:rgba(255,255,255,.12);
-    color:white;
+
+    margin-top:24px;
+
+    padding:
+        12px
+        34px;
+
+    border:
+        1px solid #e8c784;
+
+    border-radius:40px;
+
+    color:#fff;
+
     text-decoration:none;
+
     font-family:'Cormorant Garamond',serif;
-    letter-spacing:2px;
-    backdrop-filter:blur(6px);
+
+    font-size:17px;
+
+    letter-spacing:3px;
+
+    background:
+        rgba(255,255,255,.08);
+
+    backdrop-filter:blur(8px);
+
     transition:.4s;
+
     opacity:0;
-    animation:appear 1.5s 5.3s forwards;
+
+    animation:
+        fadeUp 1.3s 4.8s forwards;
 }
 
 .location-btn:hover{
-    background:rgba(255,255,255,.25);
+    background:rgba(231,196,126,.25);
     transform:translateY(-3px);
 }
+
 
 /* =========================
    ANIMATIONS
 ========================= */
 
-@keyframes appear{
+@keyframes fadeUp{
+
     from{
         opacity:0;
-        transform:translateY(20px);
+        transform:translateY(25px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
 }
 
-@keyframes namesIn{
+@keyframes namesReveal{
+
     from{
         opacity:0;
-        transform:scale(.85) translateY(25px);
+        transform:
+            translateY(30px)
+            scale(.88);
     }
+
     to{
         opacity:1;
-        transform:scale(1) translateY(0);
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
+
 
 /* =========================
    MOBILE
@@ -422,96 +739,128 @@ body{
 
 @media(max-width:600px){
 
-    .envelope{
-        width:290px;
-        height:205px;
-    }
-
-    .flap{
-        border-left-width:145px;
-        border-right-width:145px;
-        border-top-width:110px;
-    }
-
     .content{
-        padding-top:55px;
+        padding-top:58px;
     }
 
-    .small-title{
-        font-size:17px;
-        letter-spacing:4px;
+    .top-label{
+        font-size:16px;
+        letter-spacing:5px;
     }
 
     .names{
-        font-size:55px;
+        font-size:58px;
     }
 
-    .invite-text{
-        font-size:16px;
+    .names .and{
+        font-size:30px;
+        margin:10px 0;
+    }
+
+    .arabic-intro{
+        font-size:17px;
+    }
+
+    .date{
+        font-size:27px;
+    }
+
+    .location{
+        font-size:17px;
+    }
+
+    .luxury-card{
+        width:88%;
     }
 
     .hero-image{
         object-position:center center;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     ENVELOPE
-========================= -->
 
-<section class="intro" id="intro">
+<!-- ==================================
+     OPENING ENVELOPE
+================================== -->
 
-    <div class="envelope" id="envelope">
+<div class="intro" id="intro">
 
-        <div class="envelope-body"></div>
+    <div
+        class="envelope"
+        id="envelope"
+    >
+
+        <div class="envelope-box"></div>
 
         <div class="flap"></div>
 
         <div class="seal">
-            A&A
+            A & A
         </div>
 
     </div>
 
-    <div class="open-text">
+    <div class="open-label">
         OPEN INVITATION
     </div>
 
-</section>
+</div>
 
 
-<!-- =========================
+
+<!-- ==================================
      INVITATION
-========================= -->
+================================== -->
 
-<main class="invitation" id="invitation">
+<div
+    class="invitation"
+    id="invitation"
+>
 
 <section class="hero">
 
-    <!-- صورت العرسان -->
-    <img src="wedding.jpg" class="hero-image">
 
-    <div class="overlay"></div>
+    <!-- الصورة -->
+    <img
+        src="wedding.jpg"
+        class="hero-image"
+        alt="Ali & Aisha Wedding"
+    >
 
-    <!-- اللمعات -->
+
+    <!-- إضاءة سينمائية -->
+    <div class="gold-light one"></div>
+    <div class="gold-light two"></div>
+
+
+    <!-- لمعات -->
     <div class="sparkles">
-        <i class="spark"></i>
-        <i class="spark"></i>
-        <i class="spark"></i>
-        <i class="spark"></i>
-        <i class="spark"></i>
-        <i class="spark"></i>
-        <i class="spark"></i>
+
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+        <span class="spark"></span>
+
     </div>
 
 
+
+    <!-- المحتوى -->
+
     <div class="content">
 
-        <div class="small-title">
+
+        <div class="top-label">
             WEDDING INVITATION
         </div>
 
@@ -520,98 +869,139 @@ body{
 
             Ali
 
-            <span class="amp">&</span>
+            <span class="and">
+                &
+            </span>
 
             Aisha
 
         </div>
 
 
-        <div class="divider"></div>
+        <div class="gold-line"></div>
 
 
-        <div class="invite-text">
+        <div class="arabic-intro">
+
             بكل حب وفرح<br>
-            نتشرف بدعوتكم لمشاركتنا أجمل لحظات العمر
+
+            نتشرف بدعوتكم لمشاركتنا<br>
+
+            أجمل لحظات العمر
+
         </div>
 
 
         <div class="date">
+
             2 December 2026
+
         </div>
 
 
         <div class="time">
+
             5:00 PM
+
         </div>
 
 
         <div class="location">
+
             قاعة كلكامش فندي بابل
+
         </div>
 
 
-        <div class="details">
 
-            <div class="details-title">
+        <div class="luxury-card">
+
+            <div class="card-title">
+
                 OUR SPECIAL DAY
+
             </div>
 
-            <div class="details-text">
+            <div class="card-text">
+
                 حضوركم يزيد فرحتنا جمالاً
+
             </div>
 
         </div>
+
 
 
         <div class="children">
 
             بكل محبة وامتنان
 
-            <span>
+            <strong>
+
                 جَنّةُ الأطفالِ منازلُهم
-            </span>
+
+            </strong>
 
         </div>
 
 
+
         <a
+            href="https://www.google.com/maps/search/?api=1&query=Babylon+Rotana+Hotel+Baghdad"
+            target="_blank"
             class="location-btn"
-            href="https://www.google.com/maps/search/?api=1&query=فندق+بابل+العراق"
-            target="_blank">
+        >
+
             VIEW LOCATION
+
         </a>
+
 
     </div>
 
 </section>
 
-</main>
+</div>
+
 
 
 <script>
 
-const envelope = document.getElementById("envelope");
-const intro = document.getElementById("intro");
-const invitation = document.getElementById("invitation");
+const envelope =
+    document.getElementById("envelope");
 
-envelope.addEventListener("click", () => {
+const intro =
+    document.getElementById("intro");
 
-    envelope.classList.add("open");
+const invitation =
+    document.getElementById("invitation");
 
-    setTimeout(() => {
 
-        intro.classList.add("hide");
+envelope.addEventListener(
+    "click",
+    function(){
 
-        invitation.classList.add("show");
+        envelope.classList.add("open");
 
-        document.body.style.overflow = "auto";
 
-    }, 1500);
+        setTimeout(
+            function(){
 
-});
+                intro.classList.add("hide");
+
+                invitation.classList.add("show");
+
+                document.body.style.overflow="auto";
+
+            },
+            1500
+        );
+
+    }
+);
 
 </script>
+
 
 </body>
 </html>
